@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-shahjahane-navy: #0B2242;
+  --color-shahjahane-blue: #163A66;
+  --color-shahjahane-gold: #D9A73C;
+  --color-shahjahane-gold-hover: #c49635;
+  --color-shahjahane-light: #F7F4EE;
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  body {
+    @apply bg-shahjahane-light text-slate-800 antialiased;
+  }
+}
