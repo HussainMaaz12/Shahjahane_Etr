@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Factory, HardHat, Hotel } from "lucide-react";
 import Image from "next/image";
-import { MotionLink } from "@/components/MotionControls";
 import AbstractBackground from "@/components/AbstractBackground";
 
 const services = [
   {
+    id: "construction",
     title: "Construction labour",
     image: "/images/service-construction.jpg",
     icon: HardHat,
@@ -16,6 +16,7 @@ const services = [
       "Skilled and unskilled labour for building, infrastructure, and site operations — masons, carpenters, steel fixers, helpers, and general construction crews.",
   },
   {
+    id: "hotel",
     title: "Hotel management manpower",
     image: "/images/service-hospitality.jpg",
     icon: Hotel,
@@ -24,6 +25,7 @@ const services = [
       "Hospitality teams for hotels and resorts — front office, housekeeping, F&B service, kitchen support, and hotel operations staff.",
   },
   {
+    id: "manufacturing",
     title: "Manufacturing & packaging",
     image: "/images/service-manufacturing.jpg",
     icon: Factory,
@@ -34,8 +36,20 @@ const services = [
 ];
 
 export default function Services() {
+  const handleEnquire = (categoryId: string) => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("select-labor-category", { detail: categoryId })
+      );
+      const contactEl = document.getElementById("contact");
+      if (contactEl) {
+        contactEl.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
-    <section id="services" className="relative overflow-hidden bg-paper py-12 sm:py-16 lg:py-20">
+    <section id="services" className="relative scroll-mt-24 overflow-hidden bg-paper py-12 sm:py-16 lg:py-20">
       <AbstractBackground variant="light" />
 
       <div className="container-premium relative z-10">
@@ -87,25 +101,35 @@ export default function Services() {
 
                 <div className="p-6 sm:p-8">
                   <div className="mb-4 flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-white shadow-sm">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-white shadow-sm transition-colors group-hover:bg-blue-600">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <MotionLink
-                      href="#contact"
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+                    <button
+                      type="button"
+                      onClick={() => handleEnquire(service.id)}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink shadow-sm transition-all duration-300 hover:scale-110 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] cursor-pointer"
                     >
                       <span className="sr-only">Enquire about {service.title}</span>
                       <ArrowUpRight className="h-4 w-4" />
-                    </MotionLink>
+                    </button>
                   </div>
 
                   <h3 className="mb-2 font-serif text-2xl font-bold text-ink">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm font-normal leading-relaxed text-navy-mid">
+                  <p className="text-sm font-normal leading-relaxed text-navy-mid mb-5">
                     {service.description}
                   </p>
+
+                  <button
+                    type="button"
+                    onClick={() => handleEnquire(service.id)}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue hover:text-blue-700 transition-colors uppercase tracking-wider cursor-pointer"
+                  >
+                    <span>Request manpower</span>
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </button>
                 </div>
               </motion.article>
             );

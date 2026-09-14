@@ -64,7 +64,17 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-xs font-medium tracking-wider text-slate-700 uppercase transition-colors hover:text-blue"
+                  onClick={(e) => {
+                    const hash = link.href.includes("#") ? link.href.split("#")[1] : "";
+                    if (hash && typeof window !== "undefined" && window.location.pathname === "/") {
+                      const targetEl = document.getElementById(hash);
+                      if (targetEl) {
+                        e.preventDefault();
+                        targetEl.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }
+                  }}
+                  className="text-xs font-medium tracking-wider text-slate-700 uppercase transition-all duration-200 hover:-translate-y-0.5 hover:text-blue cursor-pointer"
                 >
                   {link.name}
                 </Link>
@@ -82,7 +92,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-ink lg:hidden rounded-lg hover:bg-black/5"
+              className="p-2 text-ink lg:hidden rounded-lg hover:bg-black/5 cursor-pointer transition-transform hover:scale-105"
               aria-label="Toggle mobile navigation menu"
               aria-controls="mobile-navigation"
               aria-expanded={isMobileMenuOpen}
@@ -114,8 +124,18 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block border-b border-line py-4 text-xl font-medium text-ink"
+                      onClick={(e) => {
+                        setIsMobileMenuOpen(false);
+                        const hash = link.href.includes("#") ? link.href.split("#")[1] : "";
+                        if (hash && typeof window !== "undefined" && window.location.pathname === "/") {
+                          const targetEl = document.getElementById(hash);
+                          if (targetEl) {
+                            e.preventDefault();
+                            targetEl.scrollIntoView({ behavior: "smooth" });
+                          }
+                        }
+                      }}
+                      className="block border-b border-line py-4 text-xl font-medium text-ink transition-colors hover:text-blue"
                     >
                       {link.name}
                     </Link>

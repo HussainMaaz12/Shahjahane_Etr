@@ -131,15 +131,15 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(10,10,10,0.18)] transition-all duration-300 hover:bg-ink hover:shadow-[0_18px_36px_rgba(10,10,10,0.25)] active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-3.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(10,10,10,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-900 hover:shadow-[0_18px_36px_rgba(30,79,154,0.32)] active:scale-[0.97] cursor-pointer;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white/90 backdrop-blur-sm px-8 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:border-black hover:bg-ice active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line/90 bg-white/95 backdrop-blur-sm px-8 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/60 hover:bg-blue-50/70 hover:text-blue hover:shadow-[0_12px_30px_rgba(30,79,154,0.12)] active:scale-[0.97] cursor-pointer;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/20 bg-transparent px-8 py-3.5 text-sm font-semibold text-black transition-all duration-300 hover:bg-black hover:text-white active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/25 bg-transparent px-8 py-3.5 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-[0_14px_32px_rgba(10,10,10,0.22)] active:scale-[0.97] cursor-pointer;
   }
 
   .icon-tile {

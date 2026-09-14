@@ -26,6 +26,14 @@ export default function Hero() {
     }
   };
 
+  const handleScrollToServices = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const servicesEl = document.getElementById("services");
+    if (servicesEl) {
+      servicesEl.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-paper pt-16 sm:pt-20 lg:pt-24">
       <AbstractBackground variant="hero" />
@@ -85,7 +93,7 @@ export default function Hero() {
               Request manpower
               <ArrowUpRight className="h-4 w-4" />
             </MotionLink>
-            <MotionLink href="#services" className="btn-ghost">
+            <MotionLink href="#services" onClick={handleScrollToServices} className="btn-ghost">
               View capabilities
               <ArrowDownRight className="h-4 w-4" />
             </MotionLink>
@@ -108,7 +116,7 @@ export default function Hero() {
                   key={shortcut.id}
                   type="button"
                   onClick={() => handleShortcutClick(shortcut.id)}
-                  className="group flex items-center rounded-lg border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink transition-all hover:border-blue hover:bg-blue-50/50 hover:text-blue active:scale-95 cursor-pointer"
+                  className="group flex items-center rounded-lg border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500 hover:bg-blue-50 hover:text-blue hover:shadow-[0_4px_14px_rgba(37,99,235,0.15)] active:scale-95 cursor-pointer"
                 >
                   <span>{shortcut.label}</span>
                 </button>

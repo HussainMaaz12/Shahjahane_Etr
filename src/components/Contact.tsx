@@ -488,7 +488,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(37,99,235,0.35)] transition-all duration-300 hover:brightness-110 active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+                      className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(37,99,235,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(37,99,235,0.5)] hover:brightness-110 active:scale-[0.98] disabled:opacity-60 cursor-pointer"
                     >
                       <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                       <span>Transmit Manpower Brief</span>
