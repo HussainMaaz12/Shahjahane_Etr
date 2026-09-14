@@ -1,119 +1,61 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import Image from "next/image";
+import { CheckCircle2 } from "lucide-react";
+import { MotionLink } from "@/components/MotionControls";
+import AbstractBackground from "@/components/AbstractBackground";
 
 export default function RealPeople() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
-  
-  const textVariants = {
-    hidden: { opacity: 0, y: 24 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1] as const
-      }
-    }
-  };
-
   return (
-    <section className="bg-white py-16 sm:py-24 md:py-32 overflow-hidden" ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-20 items-center">
-          
-          {/* Image Side */}
-          <div className="relative order-2 lg:order-1 h-[320px] sm:h-[400px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl group">
-            <motion.div 
-              style={{ y: imageY }}
-              className="absolute inset-0 w-full h-[110%]"
-            >
+    <section className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20">
+      <AbstractBackground variant="shapes" />
+
+      <div className="container-premium relative z-10">
+        <div className="grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="relative h-[340px] overflow-hidden rounded-2xl border border-white/80 p-2 shadow-[0_20px_50px_rgba(10,10,10,0.08)] bg-white/50 backdrop-blur-md sm:h-[420px] lg:h-[500px]">
+            <div className="relative h-full w-full overflow-hidden rounded-xl">
               <Image
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                alt="Real people in operations"
+                src="/images/workforce.jpg"
+                alt="Screened Shahjahane workforce on site"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-            </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </div>
 
-            {/* Reveal overlay */}
-            <motion.div 
-              initial={{ height: "100%" }}
-              whileInView={{ height: "0%" }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
-              className="absolute top-0 left-0 w-full bg-white z-10 origin-bottom"
-            />
-            
-            {/* Vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            
-            {/* Floating stat */}
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-              className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 bg-shahjahane-navy/90 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-white/10 shadow-xl"
-            >
-              <div className="text-2xl sm:text-3xl font-bold text-shahjahane-gold mb-0.5">100%</div>
-              <div className="text-white text-xs sm:text-sm font-medium tracking-wide">Medically Cleared & Vetted</div>
-            </motion.div>
+            <div className="absolute bottom-6 left-6 right-6 rounded-xl border border-white/20 bg-black/80 p-5 shadow-2xl backdrop-blur-xl sm:bottom-8 sm:left-8 sm:max-w-xs text-white">
+              <div className="flex items-center gap-2 mb-1">
+                <CheckCircle2 className="h-5 w-5 text-emerald-400 shrink-0" />
+                <div className="font-serif text-3xl font-bold">100%</div>
+              </div>
+              <div className="text-xs font-normal leading-relaxed text-white/80">
+                Medically cleared and document-verified before mobilisation
+              </div>
+            </div>
           </div>
 
-          {/* Text Side */}
-          <div className="order-1 lg:order-2 flex flex-col justify-center">
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-80px" }}
-              className="max-w-xl"
-            >
-              <motion.div variants={textVariants} className="text-shahjahane-gold font-semibold uppercase tracking-wider text-xs sm:text-sm mb-3 sm:mb-4">
-                Real People. Real Operations.
-              </motion.div>
-              
-              <motion.h2 
-                variants={textVariants}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-shahjahane-navy mb-5 sm:mb-8 tracking-tight leading-tight"
-              >
-                The workforce behind global operations.
-              </motion.h2>
-              
-              <motion.p 
-                variants={textVariants}
-                className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 font-light"
-              >
-                We don't rely on generic recruitment databases. Our people are highly vetted tradesmen, technicians, and specialists who have proven their reliability in the field. 
-              </motion.p>
-              
-              <motion.p 
-                variants={textVariants}
-                className="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed mb-8 sm:mb-10 font-light"
-              >
-                When you partner with Shahjahane, you are deploying an authentic, credible workforce that seamlessly integrates into your existing operations.
-              </motion.p>
-
-              <motion.div variants={textVariants}>
-                <motion.button
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ ease: [0.22, 1, 0.36, 1] as const, duration: 0.4 }}
-                  className="bg-transparent text-shahjahane-navy border-2 border-shahjahane-navy font-semibold px-7 py-3 sm:py-3.5 rounded-sm hover:bg-shahjahane-navy hover:text-white transition-colors duration-300 text-sm sm:text-base"
-                >
-                  Meet the team
-                </motion.button>
-              </motion.div>
-            </motion.div>
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-900/15 bg-blue-50/70 px-3.5 py-1 backdrop-blur-sm">
+              <span className="text-[11px] font-semibold tracking-[0.24em] text-blue uppercase">
+                Workforce Standards
+              </span>
+            </div>
+            <h2 className="mb-5 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+              The bench behind the bid.
+            </h2>
+            <p className="mb-5 text-base font-normal leading-relaxed text-navy-mid sm:text-lg">
+              Shahjahane is not a database dump. Every professional is screened
+              for role competence, medical fitness, and workplace readiness —
+              then matched to your operation.
+            </p>
+            <p className="mb-8 text-base font-normal leading-relaxed text-navy-mid sm:text-lg">
+              From construction sites to hotel floors and packaging lines, the
+              people we send are expected to represent your brand on day one.
+            </p>
+            <MotionLink href="#contact" className="btn-outline">
+              Brief our team
+            </MotionLink>
           </div>
         </div>
       </div>

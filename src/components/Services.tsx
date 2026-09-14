@@ -1,122 +1,116 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight, Factory, HardHat, Hotel } from "lucide-react";
 import Image from "next/image";
+import { MotionLink } from "@/components/MotionControls";
+import AbstractBackground from "@/components/AbstractBackground";
 
 const services = [
   {
-    title: "Construction",
-    image: "/assets/construction-site.png",
-    description: "Skilled and unskilled labor for large-scale infrastructure and building projects.",
+    title: "Construction labour",
+    image: "/images/service-construction.jpg",
+    icon: HardHat,
+    roleTags: "Masons · Carpenters · Steel Fixers · General Labour",
+    description:
+      "Skilled and unskilled labour for building, infrastructure, and site operations — masons, carpenters, steel fixers, helpers, and general construction crews.",
   },
   {
-    title: "Technical",
-    image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Specialized technicians, electricians, and operators for complex deployments.",
+    title: "Hotel management manpower",
+    image: "/images/service-hospitality.jpg",
+    icon: Hotel,
+    roleTags: "F&B · Front Desk · Housekeeping · Kitchen Stewarding",
+    description:
+      "Hospitality teams for hotels and resorts — front office, housekeeping, F&B service, kitchen support, and hotel operations staff.",
   },
   {
-    title: "Engineering",
-    image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    description: "Certified engineers and project managers ensuring precision and compliance.",
-  }
+    title: "Manufacturing & packaging",
+    image: "/images/service-manufacturing.jpg",
+    icon: Factory,
+    roleTags: "Packers · Assembly · Machine Operators · Quality Support",
+    description:
+      "Production, packing, and plant manpower for manufacturing and packaging lines — operators, packers, quality support, and warehouse crews.",
+  },
 ];
 
 export default function Services() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 24 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1] as const
-      }
-    }
-  };
-
   return (
-    <section id="services" className="bg-shahjahane-light py-16 sm:py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="mb-10 sm:mb-16 md:mb-24 max-w-2xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-shahjahane-navy mb-4 sm:mb-6 tracking-tight"
-          >
-            Manpower solutions
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-slate-600 text-base sm:text-lg md:text-xl font-light"
-          >
-            Categories of workforce supplied, sourced and screened before deployment.
-          </motion.p>
+    <section id="services" className="relative overflow-hidden bg-paper py-12 sm:py-16 lg:py-20">
+      <AbstractBackground variant="light" />
+
+      <div className="container-premium relative z-10">
+        <div className="mb-8 flex max-w-3xl flex-col sm:mb-10">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-blue-900/15 bg-blue-50/60 px-3.5 py-1 w-fit backdrop-blur-sm">
+            <span className="text-[11px] font-semibold tracking-[0.24em] text-blue uppercase">
+              Capabilities
+            </span>
+          </div>
+          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+            Three verticals. One workforce partner.
+          </h2>
+          <p className="text-base font-normal leading-relaxed text-navy-mid sm:text-lg">
+            Construction labour, hotel management manpower, and manufacturing
+            &amp; packaging teams — sourced, screened, and deployed to site.
+          </p>
         </div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8"
-        >
-          {services.map((service, index) => (
-            <motion.div 
-              key={index}
-              variants={cardVariants}
-              className="group cursor-pointer bg-white rounded-xl p-3.5 sm:p-4 md:p-5 shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 border border-slate-100 relative overflow-hidden"
-            >
-              {/* Image Container */}
-              <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden mb-5 sm:mb-6 bg-slate-100">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-[0.22,1,0.36,1]"
-                />
-                <div className="absolute inset-0 bg-shahjahane-navy/10 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-
-              {/* Content */}
-              <div className="px-1 sm:px-2 pb-3 sm:pb-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-shahjahane-navy mb-2 sm:mb-3 group-hover:text-shahjahane-gold transition-colors duration-300">
-                  {service.title}
-                </h3>
-                
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-light">
-                  {service.description}
-                </p>
-
-                {/* Arrow */}
-                <div className="mt-4 sm:mt-6 flex items-center text-shahjahane-navy font-semibold text-sm tracking-wide group-hover:text-shahjahane-gold transition-colors duration-300">
-                  <span>Explore category</span>
-                  <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+        <div className="grid grid-cols-1 gap-7 lg:grid-cols-3">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.article
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                whileHover={{ y: -6 }}
+                transition={{ delay: index * 0.08, duration: 0.5 }}
+                className="group relative overflow-hidden rounded-2xl border border-line bg-white/90 shadow-[0_16px_45px_rgba(10,10,10,0.05)] backdrop-blur-md transition-all duration-300 hover:border-blue-300/80 hover:shadow-[0_20px_50px_rgba(30,79,154,0.09)]"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  
+                  {/* Subtle role tags overlay badge */}
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <span className="inline-block rounded-lg border border-white/20 bg-black/65 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+                      {service.roleTags}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Bottom accent border */}
-              <div className="absolute bottom-0 left-0 h-0.5 bg-shahjahane-gold w-0 group-hover:w-full transition-all duration-500 ease-[0.22,1,0.36,1]" />
-            </motion.div>
-          ))}
-        </motion.div>
+
+                <div className="p-6 sm:p-8">
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-white shadow-sm">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <MotionLink
+                      href="#contact"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+                    >
+                      <span className="sr-only">Enquire about {service.title}</span>
+                      <ArrowUpRight className="h-4 w-4" />
+                    </MotionLink>
+                  </div>
+
+                  <h3 className="mb-2 font-serif text-2xl font-bold text-ink">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-sm font-normal leading-relaxed text-navy-mid">
+                    {service.description}
+                  </p>
+                </div>
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

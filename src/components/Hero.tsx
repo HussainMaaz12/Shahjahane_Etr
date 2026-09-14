@@ -1,107 +1,208 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ArrowDownRight, ArrowUpRight, CheckCircle2, Clock, Globe2, Sparkles } from "lucide-react";
+import { MotionLink } from "@/components/MotionControls";
+import AbstractBackground from "@/components/AbstractBackground";
+
+const laborShortcuts = [
+  { id: "construction", label: "Construction" },
+  { id: "hotel", label: "Hotel Manpower" },
+  { id: "manufacturing", label: "Manufacturing" },
+  { id: "technical", label: "Technical / MEP" },
+];
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const textVariant = {
-    hidden: { opacity: 0, y: 24 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const } 
-    },
+  const handleShortcutClick = (categoryId: string) => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("select-labor-category", { detail: categoryId })
+      );
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
-    <section 
-      ref={containerRef}
-      className="relative bg-shahjahane-navy pt-12 sm:pt-20 md:pt-32 pb-10 sm:pb-16 overflow-hidden min-h-[85vh] sm:min-h-screen flex flex-col justify-center"
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full relative z-10">
-        <motion.div 
-          variants={staggerContainer}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col items-start max-w-3xl"
-        >
-          <motion.h1 
-            variants={textVariant}
-            className="text-[2rem] leading-[1.15] sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white tracking-tight md:leading-tight mb-5 sm:mb-6"
-          >
-            Building the Future with Precision
-          </motion.h1>
-          
-          <motion.p 
-            variants={textVariant}
-            className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 sm:mb-10 max-w-2xl leading-relaxed font-light"
-          >
-            Delivering top-tier manpower and technical expertise for your most demanding projects.
-          </motion.p>
-          
-          <motion.div 
-            variants={textVariant}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5 mb-10 sm:mb-16 w-full sm:w-auto"
-          >
-            <motion.button
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ ease: [0.22, 1, 0.36, 1] as const, duration: 0.4 }}
-              className="bg-shahjahane-gold text-shahjahane-navy font-semibold px-7 py-3.5 rounded-sm hover:bg-shahjahane-gold-hover transition-colors shadow-sm text-center"
-            >
-              Request manpower
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ y: -2, backgroundColor: "rgba(255,255,255,0.05)" }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ ease: [0.22, 1, 0.36, 1] as const, duration: 0.4 }}
-              className="bg-transparent text-white font-semibold px-7 py-3.5 rounded-sm border border-white/20 hover:border-white/50 transition-colors text-center"
-            >
-              Explore our capabilities
-            </motion.button>
-          </motion.div>
-        </motion.div>
+    <section className="relative overflow-hidden bg-paper pt-16 sm:pt-20 lg:pt-24">
+      <AbstractBackground variant="hero" />
 
-        {/* Hero Image with Parallax */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-          style={{ y: imageY, opacity }}
-          className="relative w-full aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden shadow-2xl border border-white/10"
+      <div className="container-premium relative z-10 grid items-center gap-10 py-8 sm:py-10 lg:grid-cols-12 lg:gap-12 lg:py-12">
+        {/* Left Column: Editorial & Value Proposition */}
+        <div className="lg:col-span-6">
+          {/* Status Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-3.5 inline-flex items-center gap-2 rounded-full border border-blue-900/15 bg-blue-50/70 px-3.5 py-1 backdrop-blur-md"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-600 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-600" />
+            </span>
+            <span className="text-[11px] font-semibold tracking-[0.24em] text-blue uppercase">
+              UAE · GCC · Europe · India
+            </span>
+          </motion.div>
+
+          {/* Headline with restrained gradient accent */}
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-4 font-serif text-[2.75rem] leading-[1.04] font-bold tracking-tight text-ink sm:text-6xl lg:text-[4.25rem]"
+          >
+            Workforce at{" "}
+            <br />
+            <span className="text-gradient-blue font-semibold">
+              enterprise scale.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-6 max-w-xl text-base font-normal leading-relaxed text-navy-mid sm:text-lg"
+          >
+            Construction labour, hotel management manpower, and manufacturing
+            &amp; packaging teams — screened and deployed for enterprise
+            operations.
+          </motion.p>
+
+          {/* Primary Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-6 flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+          >
+            <MotionLink href="#contact" className="btn-primary">
+              Request manpower
+              <ArrowUpRight className="h-4 w-4" />
+            </MotionLink>
+            <MotionLink href="#services" className="btn-ghost">
+              View capabilities
+              <ArrowDownRight className="h-4 w-4" />
+            </MotionLink>
+          </motion.div>
+
+          {/* Functional Labor Shortcuts */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="rounded-xl border border-line bg-white/70 p-3.5 backdrop-blur-md"
+          >
+            <div className="mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold tracking-wider text-steel uppercase">
+              <Sparkles className="h-3.5 w-3.5 text-blue" />
+              <span>Direct workforce procurement:</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {laborShortcuts.map((shortcut) => (
+                <button
+                  key={shortcut.id}
+                  type="button"
+                  onClick={() => handleShortcutClick(shortcut.id)}
+                  className="group flex items-center rounded-lg border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink transition-all hover:border-blue hover:bg-blue-50/50 hover:text-blue active:scale-95 cursor-pointer"
+                >
+                  <span>{shortcut.label}</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right Column: Precision Media Showcase with Floating Badges */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="relative lg:col-span-6"
         >
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ 
-              backgroundImage: "url('https://images.unsplash.com/photo-1541888088325-15a9ab350dc1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')" 
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-shahjahane-navy/80 via-transparent to-transparent mix-blend-multiply" />
+          {/* Precision Frame with Glass Border & Glow */}
+          <div className="group relative min-h-[360px] overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-2 shadow-[0_24px_60px_rgba(10,10,10,0.1)] backdrop-blur-xl sm:min-h-[460px] lg:min-h-[560px]">
+            <div className="relative h-full w-full min-h-[340px] overflow-hidden rounded-xl sm:min-h-[440px] lg:min-h-[540px]">
+              <Image
+                src="/images/hero-enterprise.jpg"
+                alt="Enterprise infrastructure operations by Shahjahane Technical Services"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
+            </div>
+
+            {/* Floating Dark-Glass Capability Badges (Strictly Verified Claims) */}
+            <div className="pointer-events-none absolute top-6 right-6 hidden sm:block">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-black/75 px-3.5 py-2 text-xs font-medium text-white shadow-xl backdrop-blur-md"
+              >
+                <Clock className="h-3.5 w-3.5 text-blue-400" />
+                <span>24-Hour Shortlist Turnaround</span>
+              </motion.div>
+            </div>
+
+            <div className="pointer-events-none absolute bottom-6 left-6 right-6 flex flex-col gap-2.5 sm:right-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-black/80 px-4 py-2.5 text-xs font-medium text-white shadow-xl backdrop-blur-md"
+              >
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                <span>100% Medical &amp; Document Verification</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="flex items-center gap-2.5 rounded-xl border border-white/15 bg-black/80 px-4 py-2 text-[11px] font-medium text-white/90 shadow-xl backdrop-blur-md"
+              >
+                <Globe2 className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+                <span>Sourced in India · Deployed in UAE &amp; GCC</span>
+              </motion.div>
+            </div>
+          </div>
         </motion.div>
       </div>
-      
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-shahjahane-gold/5 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Upgraded Enterprise Metrics Strip with Subtle Glass Treatment */}
+      <div className="relative z-10 border-t border-line bg-white/80 backdrop-blur-md">
+        <div className="container-premium grid grid-cols-2 gap-6 py-5 sm:grid-cols-4 sm:py-7">
+          {[
+            ["18+", "Years operating"],
+            ["45K+", "Professionals deployed"],
+            ["120+", "Enterprise clients"],
+            ["5", "Operating regions"],
+          ].map(([value, label], idx) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.08, duration: 0.5 }}
+              className="relative pl-3 sm:pl-4 border-l border-line"
+            >
+              <div className="font-serif text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                {value}
+              </div>
+              <div className="mt-1 text-[11px] font-medium tracking-[0.16em] text-steel uppercase">
+                {label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

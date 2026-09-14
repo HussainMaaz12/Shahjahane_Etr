@@ -6,11 +6,11 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Process from "@/components/Process";
 import RealPeople from "@/components/RealPeople";
 import Trust from "@/components/Trust";
-import Cta from "@/components/Cta";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex min-h-screen flex-col overflow-x-hidden">
       <Hero />
       <Stats />
       <Services />
@@ -19,7 +19,7 @@ export default function Home() {
       <Process />
       <RealPeople />
       <Trust />
-      <Cta />
+      <Contact />
     </main>
   );
 }
