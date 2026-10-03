@@ -43,25 +43,25 @@ export default function Navbar() {
         }`}
       >
         <div className="container-premium">
-          <div className="flex h-16 items-center justify-between sm:h-20">
-                        <Link href="/" className="flex flex-shrink-0 items-center gap-3.5 sm:gap-4 group">
-              <div className="relative flex h-11 w-11 items-center justify-center sm:h-[50px] sm:w-[50px] lg:h-[54px] lg:w-[54px] transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-[72px] items-center justify-between sm:h-20 lg:h-[84px]">
+            <Link href="/" className="flex flex-shrink-0 items-center gap-3 sm:gap-4 group">
+              <div className="relative flex h-12 w-12 items-center justify-center sm:h-14 sm:w-14 lg:h-[58px] lg:w-[58px] transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/logo.png"
                   alt="Shahjahane Technical Services official corporate logo"
-                  width={56}
-                  height={56}
+                  width={64}
+                  height={64}
                   className="h-full w-full object-contain"
                   priority
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <div className="text-base font-bold tracking-[0.12em] text-[#0284c7] uppercase sm:text-lg lg:text-xl leading-none transition-colors group-hover:text-[#0369a1]">
+                <span className="text-xl sm:text-2xl lg:text-[26px] font-extrabold tracking-[0.1em] text-[#0284c7] uppercase leading-none transition-colors group-hover:text-[#0369a1]">
                   Shahjahane
-                </div>
-                <div className="text-[10px] font-semibold tracking-[0.2em] text-[#152038] uppercase sm:text-[11px] lg:text-xs mt-1 sm:mt-1.5 leading-none">
+                </span>
+                <span className="text-xs sm:text-[13px] lg:text-sm font-bold tracking-[0.2em] text-[#0f172a] uppercase mt-1.5 sm:mt-2 leading-none">
                   Technical Services
-                </div>
+                </span>
               </div>
             </Link>
 
@@ -114,7 +114,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-white/95 backdrop-blur-2xl sm:top-20 lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-[72px] z-40 overflow-y-auto bg-white/95 backdrop-blur-2xl sm:top-20 lg:hidden"
           >
             <div className="flex min-h-full flex-col justify-between px-6 py-8">
               <nav id="mobile-navigation" className="flex flex-col gap-1">
