@@ -68,8 +68,8 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.legalName,
+  "@type": ["Organization", "LocalBusiness"],
+  name: site.name,
   legalName: site.legalName,
   url: site.url,
   logo: `${site.url}/images/logo.png`,
@@ -81,6 +81,7 @@ const jsonLd = {
     "@type": "PostalAddress",
     streetAddress: site.addressUaeLines.join(" "),
     addressLocality: "Dubai",
+    addressRegion: "Dubai",
     addressCountry: "AE",
   },
   sameAs: [
