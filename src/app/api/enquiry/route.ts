@@ -36,6 +36,24 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
+function formatDubaiTimestamp(date: Date = new Date()): string {
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Dubai",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  const parts = Object.fromEntries(
+    formatter.formatToParts(date).map((p) => [p.type, p.value])
+  );
+
+  return `${parts.day} ${parts.month} ${parts.year}, ${parts.hour}:${parts.minute} ${(parts.dayPeriod || "").toUpperCase()} (Dubai, UAE)`;
+}
+
 export async function POST(request: Request) {
   try {
     let body: EnquiryRequestBody;
@@ -119,13 +137,7 @@ export async function POST(request: Request) {
         ? selectedRolesList.join(", ")
         : "General deployment crew";
 
-    const now = new Date();
-    const formattedDateGst =
-      now.toLocaleString("en-GB", {
-        timeZone: "Asia/Dubai",
-        dateStyle: "full",
-        timeStyle: "medium",
-      }) + " (GST / Dubai)";
+    const formattedTimestamp = formatDubaiTimestamp();
 
     const textContent = [
       "============================================================",
@@ -140,14 +152,15 @@ export async function POST(request: Request) {
       `Manpower Category:             ${category}`,
       `Required Headcount:            ${workersRequired}`,
       `Selected Trade Roles:          ${rolesFormatted}`,
-      `Submission Date & Time:        ${formattedDateGst}`,
+      `Submission Date & Time:        ${formattedTimestamp}`,
       "------------------------------------------------------------",
       "PROJECT / REQUIREMENT DETAILS:",
       projectDetails || "No additional project notes specified.",
       "============================================================",
-      `Transmitted via Shahjahane Executive Procurement Console`,
+      `Shahjahane Technical Services LLC`,
+      `Dubai Office: ${site.addressUaeLines.join(" ")}`,
+      `UAE Trade License: ${site.tradeLicense}`,
       `Website: ${site.url}`,
-      `Direct Desk Email: ${site.email}`,
     ].join("\n");
 
     const rolesHtml =
@@ -379,7 +392,7 @@ export async function POST(request: Request) {
         </tr>
         <tr>
           <th>Submission Date &amp; Time</th>
-          <td><span style="font-family: monospace; font-size: 12px; color: #475569;">${escapeHtml(formattedDateGst)}</span></td>
+          <td>${escapeHtml(formattedTimestamp)}</td>
         </tr>
       </table>
 
@@ -395,8 +408,7 @@ export async function POST(request: Request) {
     <div class="footer">
       <strong>Shahjahane Technical Services LLC</strong><br>
       Dubai Office: ${site.addressUaeLines.join(" ")}<br>
-      UAE Trade License: ${site.tradeLicense} &bull; <a href="${site.url}" style="color: #64748b;">${site.website}</a><br>
-      Transmitted securely via Next.js Server Integration to ${escapeHtml(process.env.ENQUIRY_EMAIL || process.env.ENQUIRY_RECIPIENT_EMAIL || "contact@shahjahane.com")}.
+      UAE Trade License: ${site.tradeLicense} &bull; <a href="${site.url}" style="color: #64748b;">${site.website}</a>
     </div>
   </div>
 </body>
@@ -497,7 +509,7 @@ export async function POST(request: Request) {
       reference: {
         company,
         contactPerson,
-        submittedAt: formattedDateGst,
+        submittedAt: formattedTimestamp,
       },
     });
   } catch (error) {
