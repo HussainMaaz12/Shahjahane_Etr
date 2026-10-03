@@ -66,27 +66,14 @@ const locations: LocationItem[] = [
     id: "israel",
     name: "Israel",
     mobileName: "Israel",
-    role: "Corridor",
-    mobileRole: "Regional Corridor",
+    role: "Deployment",
+    mobileRole: "Deployment",
     x: 50.9,
     y: 42.6,
     desktopPlacement: "left",
-    summary: "Strategic regional deployment corridor for civil infrastructure, construction, and specialized technical trade teams.",
+    summary: "Strategic deployment corridor for civil infrastructure, construction, and specialized technical trade teams.",
     coords: "31.0°N 34.8°E",
     statusLabel: "Civil Infrastructure",
-  },
-  {
-    id: "yemen",
-    name: "Yemen",
-    mobileName: "Yemen",
-    role: "Corridor",
-    mobileRole: "Regional Corridor",
-    x: 56.9,
-    y: 60.3,
-    desktopPlacement: "bottom",
-    summary: "Regional corridor logistics, maritime trade route staffing, and regional infrastructure operations.",
-    coords: "15.5°N 48.5°E",
-    statusLabel: "Maritime Logistics",
   },
   {
     id: "india",
@@ -117,7 +104,7 @@ const locations: LocationItem[] = [
   },
 ];
 
-const mobileOrder = ["india", "uae", "saudi", "qatar", "israel", "yemen", "europe"];
+const mobileOrder = ["india", "uae", "saudi", "qatar", "israel", "europe"];
 const mobileLocations = mobileOrder.map((id) => locations.find((l) => l.id === id)!);
 
 function GeoLocator({ id }: { id: string }) {
@@ -200,22 +187,6 @@ function GeoLocator({ id }: { id: string }) {
         <circle cx="48" cy="42" r="9" stroke="#a78bfa" strokeWidth="0.8" opacity="0.3" className="animate-ping" style={{ transformOrigin: "48px 42px" }} />
         <circle cx="48" cy="42" r="4.5" fill="none" stroke="#a78bfa" strokeWidth="1" opacity="0.7" />
         <circle cx="48" cy="42" r="2.5" fill="#a78bfa" />
-      </svg>
-    ),
-    yemen: (
-      <svg viewBox="0 0 100 100" className="h-full w-full" fill="none">
-        <circle cx="50" cy="50" r="44" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" strokeDasharray="3 3" />
-        <circle cx="50" cy="50" r="26" stroke="rgba(255,255,255,0.04)" strokeWidth="0.8" />
-        <path
-          d="M20 38 L42 28 L66 24 L84 32 L88 44 L76 56 L52 64 L30 62 L18 52 Z"
-          stroke="rgba(167,139,250,0.5)"
-          strokeWidth="1.2"
-          fill="rgba(139,92,246,0.08)"
-        />
-        <path d="M14 68 Q50 54 86 64" stroke="rgba(167,139,250,0.2)" strokeWidth="0.8" />
-        <circle cx="52" cy="42" r="9" stroke="#a78bfa" strokeWidth="0.8" opacity="0.3" className="animate-ping" style={{ transformOrigin: "52px 42px" }} />
-        <circle cx="52" cy="42" r="4.5" fill="none" stroke="#a78bfa" strokeWidth="1" opacity="0.7" />
-        <circle cx="52" cy="42" r="2.5" fill="#a78bfa" />
       </svg>
     ),
     europe: (

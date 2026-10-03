@@ -3,7 +3,6 @@ import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import GlobalReach from "@/components/GlobalReach";
 import WhyChooseUs from "@/components/WhyChooseUs";
-import Process from "@/components/Process";
 import RealPeople from "@/components/RealPeople";
 import Trust from "@/components/Trust";
 import Contact from "@/components/Contact";
@@ -16,7 +15,6 @@ export default function Home() {
       <Services />
       <GlobalReach />
       <WhyChooseUs />
-      <Process />
       <RealPeople />
       <Trust />
       <Contact />

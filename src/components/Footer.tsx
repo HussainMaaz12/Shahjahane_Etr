@@ -20,21 +20,21 @@ export default function Footer() {
       <div className="container-premium pt-16 pb-8 sm:pt-20">
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="mb-5 flex items-center gap-3 group">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 sm:h-11 sm:w-11 transition-transform duration-300 group-hover:scale-105 shadow-sm">
+            <Link href="/" className="mb-5 flex items-center gap-3.5 group">
+              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-white p-1 sm:h-12 sm:w-12 transition-transform duration-300 group-hover:scale-105 shadow-sm">
                 <Image
                   src="/images/logo.png"
                   alt="Shahjahane Technical Services official corporate logo"
-                  width={44}
-                  height={44}
+                  width={48}
+                  height={48}
                   className="h-full w-full object-contain"
                 />
               </div>
-              <div className="leading-tight">
-                <div className="text-sm font-bold tracking-[0.14em] text-[#38bdf8] uppercase sm:text-base transition-colors group-hover:text-white">
+              <div className="flex flex-col justify-center">
+                <div className="text-base font-bold tracking-[0.12em] text-[#38bdf8] uppercase sm:text-lg transition-colors group-hover:text-white leading-none">
                   Shahjahane
                 </div>
-                <div className="text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase sm:text-[11px]">
+                <div className="text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase sm:text-[11px] mt-1 leading-none">
                   Technical Services
                 </div>
               </div>

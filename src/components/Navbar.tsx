@@ -44,22 +44,22 @@ export default function Navbar() {
       >
         <div className="container-premium">
           <div className="flex h-16 items-center justify-between sm:h-20">
-                        <Link href="/" className="flex flex-shrink-0 items-center gap-3 group">
-              <div className="relative flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-105">
+                        <Link href="/" className="flex flex-shrink-0 items-center gap-3.5 sm:gap-4 group">
+              <div className="relative flex h-11 w-11 items-center justify-center sm:h-[50px] sm:w-[50px] lg:h-[54px] lg:w-[54px] transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/logo.png"
                   alt="Shahjahane Technical Services official corporate logo"
-                  width={40}
-                  height={40}
+                  width={56}
+                  height={56}
                   className="h-full w-full object-contain"
                   priority
                 />
               </div>
-              <div className="leading-tight">
-                <div className="text-sm font-bold tracking-[0.14em] text-[#0284c7] uppercase sm:text-base transition-colors group-hover:text-[#0369a1]">
+              <div className="flex flex-col justify-center">
+                <div className="text-base font-bold tracking-[0.12em] text-[#0284c7] uppercase sm:text-lg lg:text-xl leading-none transition-colors group-hover:text-[#0369a1]">
                   Shahjahane
                 </div>
-                <div className="text-[10px] font-semibold tracking-[0.2em] text-[#152038] uppercase sm:text-[11px]">
+                <div className="text-[10px] font-semibold tracking-[0.2em] text-[#152038] uppercase sm:text-[11px] lg:text-xs mt-1 sm:mt-1.5 leading-none">
                   Technical Services
                 </div>
               </div>
