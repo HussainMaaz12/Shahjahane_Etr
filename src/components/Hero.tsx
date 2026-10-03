@@ -130,7 +130,7 @@ export default function Hero() {
             <div className="relative h-full w-full min-h-[340px] overflow-hidden rounded-xl sm:min-h-[440px] lg:min-h-[540px]">
               <Image
                 src="/images/hero-enterprise.jpg"
-                alt="Enterprise infrastructure operations by Shahjahane Technical Services"
+                alt="Enterprise infrastructure operations and skilled manpower deployment by Shahjahane Technical Services UAE"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"

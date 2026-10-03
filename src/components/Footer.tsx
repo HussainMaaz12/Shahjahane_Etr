@@ -125,14 +125,12 @@ export default function Footer() {
               </li>
               <li className="flex gap-3">
                 <Globe className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-                <a
-                  href={site.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/"
                   className="hover:text-white"
                 >
                   {site.website}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

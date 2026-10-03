@@ -2,11 +2,13 @@ export const site = {
   name: "Shahjahane Technical Services",
   legalName: "Shahjahane Technical Services LLC",
   shortName: "Shahjahane",
+  title: "Shahjahane Technical Services | Manpower Supply & Workforce Solutions UAE",
   tagline:
     "Construction labour, hotel management manpower, and manufacturing & packaging teams.",
   description:
-    "Shahjahane Technical Services sources, screens, and deploys manpower for construction labour, hotel management, and manufacturing and packaging operations in the UAE, GCC, Europe, and India.",
+    "Shahjahane Technical Services provides scalable manpower and workforce solutions for construction, hospitality, manufacturing and technical operations across the UAE, GCC, Israel and international markets.",
   url: "https://www.shahjahane.com",
+  canonicalUrl: "https://www.shahjahane.com/",
   website: "www.shahjahane.com",
   email: "contact@shahjahane.com",
   phoneUae: "+971 5291 76466",

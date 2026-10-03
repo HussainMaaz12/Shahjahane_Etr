@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import { site } from "@/lib/site";
+
+export const viewport: Viewport = {
+  themeColor: "#070a10",
+  width: "device-width",
+  initialScale: 1,
+};
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const cormorant = Cormorant_Garamond({
@@ -16,12 +22,12 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Enterprise Workforce & Manpower Solutions`,
-    template: `%s | ${site.shortName}`,
+    default: site.title,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   alternates: {
-    canonical: "/",
+    canonical: site.canonicalUrl,
   },
   icons: {
     icon: [
@@ -32,9 +38,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: `${site.name} | Enterprise Workforce & Manpower Solutions`,
+    title: site.title,
     description: site.description,
-    url: site.url,
+    url: site.canonicalUrl,
     siteName: site.legalName,
     locale: "en_AE",
     type: "website",
@@ -43,13 +49,13 @@ export const metadata: Metadata = {
         url: "/images/hero-enterprise.jpg",
         width: 1200,
         height: 630,
-        alt: `${site.name} - Enterprise Workforce Solutions`,
+        alt: `${site.name} - Manpower Supply & Workforce Solutions UAE`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Enterprise Workforce & Manpower Solutions`,
+    title: site.title,
     description: site.description,
     images: ["/images/hero-enterprise.jpg"],
   },
@@ -71,7 +77,7 @@ const jsonLd = {
   "@type": ["Organization", "LocalBusiness"],
   name: site.name,
   legalName: site.legalName,
-  url: site.url,
+  url: site.canonicalUrl,
   logo: `${site.url}/images/logo.png`,
   image: `${site.url}/images/hero-enterprise.jpg`,
   description: site.description,
@@ -79,15 +85,20 @@ const jsonLd = {
   email: site.email,
   address: {
     "@type": "PostalAddress",
-    streetAddress: site.addressUaeLines.join(" "),
+    streetAddress: "Al Nabaesi BLDG, Office No. 03, Reego Road, Deira",
     addressLocality: "Dubai",
     addressRegion: "Dubai",
     addressCountry: "AE",
   },
+  identifier: {
+    "@type": "PropertyValue",
+    name: "UAE Trade License",
+    value: site.tradeLicense,
+  },
   sameAs: [
+    site.social.youtube,
     site.social.instagram,
     site.social.facebook,
-    site.social.youtube,
   ],
 };
 
