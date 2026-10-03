@@ -16,7 +16,7 @@ export default function RealPeople() {
             <div className="relative h-full w-full overflow-hidden rounded-xl">
               <Image
                 src="/images/workforce.jpg"
-                alt="Screened Shahjahane workforce on site"
+                alt="Document-verified and medically cleared Shahjahane workforce deployed on an active site"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

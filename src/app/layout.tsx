@@ -16,31 +16,78 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Enterprise Manpower`,
+    default: `${site.name} | Enterprise Workforce & Manpower Solutions`,
     template: `%s | ${site.shortName}`,
   },
   description: site.description,
-  keywords: [
-    "construction labour supply",
-    "hotel management manpower",
-    "manufacturing manpower",
-    "packaging industry staffing",
-    "manpower supply UAE",
-    "GCC workforce",
-  ],
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/images/logo.png", type: "image/png" },
     ],
     apple: [{ url: "/images/logo.png" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: site.name,
+    title: `${site.name} | Enterprise Workforce & Manpower Solutions`,
     description: site.description,
+    url: site.url,
+    siteName: site.legalName,
+    locale: "en_AE",
     type: "website",
-    images: [{ url: "/images/logo.png" }],
+    images: [
+      {
+        url: "/images/hero-enterprise.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} - Enterprise Workforce Solutions`,
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | Enterprise Workforce & Manpower Solutions`,
+    description: site.description,
+    images: ["/images/hero-enterprise.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.legalName,
+  legalName: site.legalName,
+  url: site.url,
+  logo: `${site.url}/images/logo.png`,
+  image: `${site.url}/images/hero-enterprise.jpg`,
+  description: site.description,
+  telephone: site.phoneUae,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.addressUaeLines.join(" "),
+    addressLocality: "Dubai",
+    addressCountry: "AE",
+  },
+  sameAs: [
+    site.social.instagram,
+    site.social.facebook,
+    site.social.youtube,
+  ],
 };
 
 export default function RootLayout({
@@ -54,6 +101,10 @@ export default function RootLayout({
       className={`scroll-smooth ${outfit.variable} ${cormorant.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-paper font-sans text-ink antialiased overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         <div className="flex-grow">{children}</div>
         <Footer />

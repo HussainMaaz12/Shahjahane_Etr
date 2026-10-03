@@ -48,7 +48,7 @@ export default function Navbar() {
               <div className="relative flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/logo.png"
-                  alt="Shahjahane Technical Services"
+                  alt="Shahjahane Technical Services official corporate logo"
                   width={40}
                   height={40}
                   className="h-full w-full object-contain"

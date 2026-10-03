@@ -4,6 +4,21 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
+  description: `Privacy policy and data handling practices for ${site.legalName}. Learn how client enquiries and workforce data are protected.`,
+  alternates: {
+    canonical: "/privacy",
+  },
+  openGraph: {
+    title: `Privacy Policy | ${site.shortName}`,
+    description: `Privacy policy and data handling practices for ${site.legalName}.`,
+    url: `${site.url}/privacy`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Privacy Policy | ${site.shortName}`,
+    description: `Privacy policy and data handling practices for ${site.legalName}.`,
+  },
 };
 
 export default function PrivacyPage() {

@@ -24,7 +24,7 @@ export default function Footer() {
               <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 sm:h-11 sm:w-11 transition-transform duration-300 group-hover:scale-105 shadow-sm">
                 <Image
                   src="/images/logo.png"
-                  alt="Shahjahane Technical Services"
+                  alt="Shahjahane Technical Services official corporate logo"
                   width={44}
                   height={44}
                   className="h-full w-full object-contain"

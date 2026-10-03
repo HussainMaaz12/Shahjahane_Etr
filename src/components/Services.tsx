@@ -84,7 +84,7 @@ export default function Services() {
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <Image
                     src={service.image}
-                    alt={service.title}
+                    alt={`${service.title} specialized workforce operations — Shahjahane Technical Services`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -429,7 +429,7 @@ function DesktopGlobalReach() {
             <div className="relative mx-auto w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-2xl border border-white/15 bg-[#070b12] shadow-[0_24px_60px_rgba(0,0,0,0.6)]">
         <Image
           src="/images/global-map.jpg"
-          alt="Global operations map spanning Europe, GCC, and India"
+          alt="Shahjahane international workforce corridors and deployment destinations across Europe, the GCC, and India"
           fill
           sizes="(max-width: 1024px) 100vw, 1024px"
           className="object-cover opacity-90"

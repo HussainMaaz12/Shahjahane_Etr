@@ -4,6 +4,21 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
+  description: `Terms of service and commercial engagement standards for ${site.legalName}. Workforce deployment terms and verification standards.`,
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: `Terms of Service | ${site.shortName}`,
+    description: `Terms of service and commercial engagement standards for ${site.legalName}.`,
+    url: `${site.url}/terms`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Terms of Service | ${site.shortName}`,
+    description: `Terms of service and commercial engagement standards for ${site.legalName}.`,
+  },
 };
 
 export default function TermsPage() {
