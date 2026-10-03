@@ -91,8 +91,7 @@ export default function Services() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   
-                  {/* Subtle role tags overlay badge */}
-                  <div className="absolute bottom-3 left-3 right-3">
+                                    <div className="absolute bottom-3 left-3 right-3">
                     <span className="inline-block rounded-lg border border-white/20 bg-black/65 px-3 py-1 text-[11px] font-medium text-white backdrop-blur-md">
                       {service.roleTags}
                     </span>

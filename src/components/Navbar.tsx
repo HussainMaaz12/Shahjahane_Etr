@@ -44,8 +44,7 @@ export default function Navbar() {
       >
         <div className="container-premium">
           <div className="flex h-16 items-center justify-between sm:h-20">
-            {/* Brand Logo */}
-            <Link href="/" className="flex flex-shrink-0 items-center gap-3 group">
+                        <Link href="/" className="flex flex-shrink-0 items-center gap-3 group">
               <div className="relative flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-105">
                 <Image
                   src="/images/logo.png"
@@ -66,8 +65,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden items-center gap-8 lg:flex">
+                        <nav className="hidden items-center gap-8 lg:flex">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -89,15 +87,13 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Direct CTA */}
-            <div className="hidden lg:block">
+                        <div className="hidden lg:block">
               <MotionLink href="#contact" className="btn-primary py-2.5 text-xs tracking-wide uppercase">
                 Request manpower
               </MotionLink>
             </div>
 
-            {/* Mobile Menu Toggle Button */}
-            <button
+                        <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-ink lg:hidden rounded-lg hover:bg-black/5 cursor-pointer transition-transform hover:scale-105"
@@ -111,8 +107,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
-      <AnimatePresence>
+            <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}

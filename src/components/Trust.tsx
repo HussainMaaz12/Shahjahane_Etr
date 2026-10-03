@@ -55,8 +55,7 @@ export default function Trust() {
           </p>
         </div>
 
-        {/* Client Partner Badges */}
-        <div className="mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 sm:mb-10">
+                <div className="mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 sm:mb-10">
           {clients.map((client) => (
             <div
               key={client}
@@ -67,8 +66,7 @@ export default function Trust() {
           ))}
         </div>
 
-        {/* Verified Enterprise Testimonial Cards */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <motion.blockquote
               key={item.author}
@@ -104,8 +102,7 @@ export default function Trust() {
           ))}
         </div>
 
-        {/* Verified Credentials Strip */}
-        <div className="mt-12 border-t border-line pt-8">
+                <div className="mt-12 border-t border-line pt-8">
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-900/15 bg-white/90 px-5 py-2.5 text-xs font-semibold tracking-wide text-slate-800 uppercase shadow-sm backdrop-blur-sm sm:text-sm">
               <ShieldCheck className="h-4 w-4 text-blue-600 shrink-0" />

@@ -18,8 +18,7 @@ export default function FloatingActions() {
       >
         <WhatsAppIcon className="h-5 w-5" />
         
-        {/* Subtle tooltip on hover */}
-        <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-lg border border-black/10 bg-black/85 px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 hidden sm:block">
+                <span className="pointer-events-none absolute right-full mr-3 whitespace-nowrap rounded-lg border border-black/10 bg-black/85 px-2.5 py-1 text-[11px] font-medium text-white opacity-0 shadow-lg backdrop-blur-sm transition-opacity group-hover:opacity-100 hidden sm:block">
           Direct WhatsApp
         </span>
       </motion.a>

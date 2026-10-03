@@ -39,10 +39,8 @@ export default function Hero() {
       <AbstractBackground variant="hero" />
 
       <div className="container-premium relative z-10 grid items-center gap-10 py-8 sm:py-10 lg:grid-cols-12 lg:gap-12 lg:py-12">
-        {/* Left Column: Editorial & Value Proposition */}
-        <div className="lg:col-span-6">
-          {/* Status Eyebrow */}
-          <motion.div
+                <div className="lg:col-span-6">
+                    <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -57,8 +55,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline with restrained gradient accent */}
-          <motion.h1
+                    <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -82,8 +79,7 @@ export default function Hero() {
             operations.
           </motion.p>
 
-          {/* Primary Action Buttons */}
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -99,8 +95,7 @@ export default function Hero() {
             </MotionLink>
           </motion.div>
 
-          {/* Functional Labor Shortcuts */}
-          <motion.div
+                    <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -125,15 +120,13 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Column: Precision Media Showcase with Floating Badges */}
-        <motion.div
+                <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:col-span-6"
         >
-          {/* Precision Frame with Glass Border & Glow */}
-          <div className="group relative min-h-[360px] overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-2 shadow-[0_24px_60px_rgba(10,10,10,0.1)] backdrop-blur-xl sm:min-h-[460px] lg:min-h-[560px]">
+                    <div className="group relative min-h-[360px] overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-2 shadow-[0_24px_60px_rgba(10,10,10,0.1)] backdrop-blur-xl sm:min-h-[460px] lg:min-h-[560px]">
             <div className="relative h-full w-full min-h-[340px] overflow-hidden rounded-xl sm:min-h-[440px] lg:min-h-[540px]">
               <Image
                 src="/images/hero-enterprise.jpg"
@@ -146,8 +139,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
             </div>
 
-            {/* Floating Dark-Glass Capability Badges (Strictly Verified Claims) */}
-            <div className="pointer-events-none absolute top-6 right-6 hidden sm:block">
+                        <div className="pointer-events-none absolute top-6 right-6 hidden sm:block">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -184,8 +176,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Upgraded Enterprise Metrics Strip with Subtle Glass Treatment */}
-      <div className="relative z-10 border-t border-line bg-white/80 backdrop-blur-md">
+            <div className="relative z-10 border-t border-line bg-white/80 backdrop-blur-md">
         <div className="container-premium grid grid-cols-2 gap-6 py-5 sm:grid-cols-4 sm:py-7">
           {[
             ["18+", "Years operating"],

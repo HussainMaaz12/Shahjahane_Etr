@@ -47,8 +47,7 @@ export default function Process() {
         </div>
 
         <div className="relative">
-          {/* Subtle connecting line across cards on desktop only */}
-          <div className="hidden lg:block absolute top-1/2 left-8 right-8 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent -translate-y-6 pointer-events-none z-0" />
+                    <div className="hidden lg:block absolute top-1/2 left-8 right-8 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent -translate-y-6 pointer-events-none z-0" />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
             {steps.map((step, index) => (
@@ -61,8 +60,7 @@ export default function Process() {
                 transition={{ delay: index * 0.08, duration: 0.45 }}
                 className="group relative rounded-2xl border border-line/80 bg-white/85 p-7 shadow-[0_12px_35px_rgba(10,10,10,0.04)] backdrop-blur-md transition-all duration-300 hover:border-blue-300 hover:shadow-[0_16px_40px_rgba(30,79,154,0.08)]"
               >
-                {/* Step number with subtle glow */}
-                <div className="mb-4 flex items-center justify-between">
+                                <div className="mb-4 flex items-center justify-between">
                   <span className="font-serif text-3xl font-bold text-blue-900/40 transition-colors group-hover:text-blue">
                     {step.num}
                   </span>

@@ -133,6 +133,18 @@
     display: none;
   }
 
+    .mobile-snap-scroll {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-left: 20px;
+    scroll-padding-right: 20px;
+  }
+
+  .mobile-snap-card {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-black px-8 py-3.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(10,10,10,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-slate-900 hover:shadow-[0_18px_36px_rgba(30,79,154,0.32)] active:scale-[0.97] cursor-pointer;
   }

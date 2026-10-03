@@ -127,7 +127,9 @@ interface SubmittedSummary {
   requiredLocation: string;
   category: string;
   workersRequired: string;
-  projectRequirement: string;
+  selectedRoles: string[];
+  projectNotes?: string;
+  projectRequirement?: string;
   submittedAt: string;
 }
 
@@ -138,7 +140,6 @@ export default function Contact() {
   const [selectedRoles, setSelectedRoles] = useState<string[]>(["Masons", "Steel Fixers"]);
   const [headcount, setHeadcount] = useState<string>("50–200");
 
-  // Form Fields
   const [company, setCompany] = useState<string>("");
   const [contactPerson, setContactPerson] = useState<string>("");
   const [businessEmail, setBusinessEmail] = useState<string>("");
@@ -147,13 +148,11 @@ export default function Contact() {
   const [requiredLocation, setRequiredLocation] = useState<string>("");
   const [projectNotes, setProjectNotes] = useState<string>("");
 
-  // Submission State
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [submittedData, setSubmittedData] = useState<SubmittedSummary | null>(null);
 
-  // Listen for custom labor category selection from Hero shortcuts
   useEffect(() => {
     const handleSelectCategory = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
@@ -187,7 +186,6 @@ export default function Contact() {
     setSelectedRoles((prev) => prev.filter((r) => r !== role));
   };
 
-  // Build the live auto-generated workforce brief
   const generatedBrief = `${currentCategory.name} — ${headcount} personnel${
     selectedRoles.length > 0 ? ` — Roles: ${selectedRoles.join(", ")}` : ""
   }`;
@@ -233,6 +231,7 @@ export default function Contact() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting) return;
     setServerError(null);
 
     if (!validateForm()) {
@@ -259,6 +258,8 @@ export default function Contact() {
       requiredLocation: requiredLocation.trim(),
       category: currentCategory.name,
       workersRequired: headcount,
+      selectedRoles: selectedRoles.length > 0 ? selectedRoles : ["General deployment crew"],
+      projectNotes: projectNotes.trim(),
       projectRequirement: compiledRequirement,
     };
 
@@ -283,7 +284,7 @@ export default function Contact() {
           timeZone: "Asia/Dubai",
           dateStyle: "full",
           timeStyle: "medium",
-        }) + " (GST)";
+        }) + " (GST / Dubai)";
 
       setSubmittedData({
         ...payload,
@@ -318,8 +319,7 @@ export default function Contact() {
 
       <div className="container-premium relative z-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Corporate Office Coordinates & Direct Desk */}
-          <div className="lg:col-span-4 flex flex-col justify-between">
+                    <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-3.5 py-1 backdrop-blur-md">
                 <span className="text-[11px] font-semibold tracking-[0.24em] text-blue-300 uppercase">
@@ -409,8 +409,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column: Executive Manpower Requirement Console */}
-          <div className="lg:col-span-8">
+                    <div className="lg:col-span-8">
             <div className="glass-glow-behind">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -418,8 +417,7 @@ export default function Contact() {
                 viewport={{ once: true }}
                 className="relative rounded-2xl border border-white/15 bg-[#0c121e]/90 p-6 shadow-[0_24px_70px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:p-9"
               >
-                {/* Console Top Header */}
-                <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+                                <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
                   <div>
                     <h3 className="font-serif text-2xl font-bold tracking-tight text-white">
                       Request Manpower Enquiry
@@ -436,8 +434,7 @@ export default function Contact() {
 
                 <AnimatePresence mode="wait">
                   {submittedData ? (
-                    /* Clear, Executive Confirmation State */
-                    <motion.div
+                                        <motion.div
                       key="success"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -459,8 +456,7 @@ export default function Contact() {
                         </p>
                       </div>
 
-                      {/* Summary Receipt Box */}
-                      <div className="mt-6 rounded-xl border border-white/15 bg-white/[0.03] p-5 backdrop-blur-sm sm:p-6">
+                                            <div className="mt-6 rounded-xl border border-white/15 bg-white/[0.03] p-5 backdrop-blur-sm sm:p-6">
                         <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-3">
                           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-300">
                             <ShieldCheck className="h-4 w-4" />
@@ -504,22 +500,29 @@ export default function Contact() {
                             <span className="text-white/50">Workers Required:</span>
                             <p className="font-semibold text-white">{submittedData.workersRequired}</p>
                           </div>
+                          <div className="sm:col-span-2">
+                            <span className="text-white/50">Selected Trade Roles:</span>
+                            <p className="font-medium text-blue-200">
+                              {submittedData.selectedRoles && submittedData.selectedRoles.length > 0
+                                ? submittedData.selectedRoles.join(", ")
+                                : "General deployment crew"}
+                            </p>
+                          </div>
                         </div>
 
-                        {submittedData.projectRequirement && (
+                        {(submittedData.projectNotes || submittedData.projectRequirement) && (
                           <div className="mt-4 border-t border-white/10 pt-3">
                             <span className="text-[11px] font-semibold uppercase tracking-wider text-white/50">
-                              Requirement Details:
+                              Project / Requirement Details:
                             </span>
                             <p className="mt-1 whitespace-pre-wrap rounded-lg bg-black/40 p-3 text-xs leading-relaxed text-white/80">
-                              {submittedData.projectRequirement}
+                              {submittedData.projectNotes || submittedData.projectRequirement}
                             </p>
                           </div>
                         )}
                       </div>
 
-                      {/* SLA Follow-up Notification */}
-                      <div className="mt-5 flex items-start gap-3 rounded-xl border border-blue-500/20 bg-blue-500/10 p-4 text-xs text-blue-200">
+                                            <div className="mt-5 flex items-start gap-3 rounded-xl border border-blue-500/20 bg-blue-500/10 p-4 text-xs text-blue-200">
                         <Clock className="mt-0.5 h-4 w-4 shrink-0 text-blue-400" />
                         <div>
                           <span className="font-semibold text-white">Next Steps:</span> Shahjahane&apos;s executive
@@ -528,8 +531,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Action to submit another */}
-                      <div className="mt-6 flex justify-center">
+                                            <div className="mt-6 flex justify-center">
                         <button
                           type="button"
                           onClick={handleReset}
@@ -541,8 +543,7 @@ export default function Contact() {
                       </div>
                     </motion.div>
                   ) : (
-                    /* The Interactive Requirement Form */
-                    <form onSubmit={onSubmit} className="space-y-6">
+                                        <form onSubmit={onSubmit} className="space-y-6">
                       {serverError && (
                         <motion.div
                           initial={{ opacity: 0, y: -8 }}
@@ -554,8 +555,7 @@ export default function Contact() {
                         </motion.div>
                       )}
 
-                      {/* Step 1: Category Selector Tabs */}
-                      <div>
+                                            <div>
                         <label className="mb-2 block text-[11px] font-semibold tracking-wider text-white/70 uppercase">
                           1. Select Manpower Category
                         </label>
@@ -580,8 +580,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Step 2: Dynamic Role Chips (Multiselect) */}
-                      <div>
+                                            <div>
                         <div className="mb-2 flex items-center justify-between">
                           <label className="text-[11px] font-semibold tracking-wider text-white/70 uppercase">
                             2. Select Required Trade Roles (Multi-select)
@@ -617,8 +616,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Selected Roles Preview Tag Cloud */}
-                      {selectedRoles.length > 0 && (
+                                            {selectedRoles.length > 0 && (
                         <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
                           <div className="mb-1.5 text-[10px] font-semibold tracking-wider text-white/50 uppercase">
                             Selected Workforce Bench:
@@ -644,8 +642,7 @@ export default function Contact() {
                         </div>
                       )}
 
-                      {/* Step 3: Headcount / Workers Required Selection */}
-                      <div>
+                                            <div>
                         <label className="mb-2 block text-[11px] font-semibold tracking-wider text-white/70 uppercase">
                           3. Workers Required / Estimated Headcount
                         </label>
@@ -671,8 +668,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Auto-Generated Summary Banner */}
-                      <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-3.5 text-xs text-blue-200">
+                                            <div className="rounded-xl border border-blue-500/20 bg-blue-500/10 p-3.5 text-xs text-blue-200">
                         <div className="flex items-center gap-1.5 font-semibold text-white">
                           <Sparkles className="h-3.5 w-3.5 text-blue-400" />
                           <span>Live Requirement Configuration:</span>
@@ -682,14 +678,12 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Step 4: Corporate Contact & Project Details */}
-                      <div className="border-t border-white/10 pt-5">
+                                            <div className="border-t border-white/10 pt-5">
                         <div className="mb-3 text-[11px] font-semibold tracking-wider text-white/70 uppercase">
                           4. Company, Contact &amp; Deployment Details
                         </div>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                          {/* Company Name */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Company / Project Entity *
                             </label>
@@ -714,8 +708,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Contact Person */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Contact Person *
                             </label>
@@ -740,8 +733,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Business Email */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Business Email *
                             </label>
@@ -767,8 +759,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Phone / WhatsApp */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Phone / WhatsApp *
                             </label>
@@ -793,8 +784,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Country */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Country *
                             </label>
@@ -825,8 +815,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Required Location */}
-                          <div>
+                                                    <div>
                             <label className="block text-xs font-medium text-white/70">
                               Required Location / Site *
                             </label>
@@ -851,8 +840,7 @@ export default function Contact() {
                             )}
                           </div>
 
-                          {/* Project / Requirement Details */}
-                          <div className="sm:col-span-2">
+                                                    <div className="sm:col-span-2">
                             <label className="block text-xs font-medium text-white/70">
                               Project / Requirement Specifications
                             </label>
@@ -867,8 +855,7 @@ export default function Contact() {
                         </div>
                       </div>
 
-                      {/* Executive CTA Submit Button */}
-                      <div className="pt-2">
+                                            <div className="pt-2">
                         <button
                           type="submit"
                           disabled={isSubmitting}
