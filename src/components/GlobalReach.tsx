@@ -50,7 +50,7 @@ const locations: LocationItem[] = [
     id: "israel",
     name: "Israel",
     role: "Corridor",
-    x: 51.4,
+    x: 50.9,
     y: 42.6,
     desktopPlacement: "left",
     summary: "Strategic regional deployment corridor for civil infrastructure, construction, and specialized technical trade teams.",
@@ -118,7 +118,7 @@ export default function GlobalReach() {
             fill
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="object-cover opacity-90"
-            priority={false}
+            priority={true}
           />
           {/* Subtle vignette overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#070b12]/60 via-transparent to-[#070b12]/30 pointer-events-none" />
