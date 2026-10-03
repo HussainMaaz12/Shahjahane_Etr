@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { navLinks } from "@/lib/site";
 import { MotionLink } from "@/components/MotionControls";
@@ -45,14 +46,21 @@ export default function Navbar() {
           <div className="flex h-16 items-center justify-between sm:h-20">
             {/* Brand Logo */}
             <Link href="/" className="flex flex-shrink-0 items-center gap-3 group">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-xs font-bold tracking-tight text-white sm:h-10 sm:w-10 shadow-sm transition-transform duration-300 group-hover:scale-105">
-                ST
+              <div className="relative flex h-9 w-9 items-center justify-center sm:h-10 sm:w-10 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/images/logo.png"
+                  alt="Shahjahane Technical Services"
+                  width={40}
+                  height={40}
+                  className="h-full w-full object-contain"
+                  priority
+                />
               </div>
               <div className="leading-tight">
-                <div className="text-sm font-bold tracking-[0.16em] text-ink uppercase sm:text-base">
+                <div className="text-sm font-bold tracking-[0.14em] text-[#0284c7] uppercase sm:text-base transition-colors group-hover:text-[#0369a1]">
                   Shahjahane
                 </div>
-                <div className="text-[10px] font-semibold tracking-[0.2em] text-steel uppercase sm:text-[11px]">
+                <div className="text-[10px] font-semibold tracking-[0.2em] text-[#152038] uppercase sm:text-[11px]">
                   Technical Services
                 </div>
               </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Globe, Landmark, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import AbstractBackground from "@/components/AbstractBackground";
 
 interface LocationItem {
@@ -19,78 +19,75 @@ interface LocationItem {
 
 const locations: LocationItem[] = [
   {
-    id: "europe",
-    name: "Europe",
-    role: "Deployment",
-    x: 34.8,
-    y: 24.6,
-    desktopPlacement: "top",
-    summary: "Active deployment across industrial, infrastructure, and technical projects.",
+    id: "uae",
+    name: "UAE",
+    role: "HQ / Operations",
+    x: 63.9,
+    y: 49.7,
+    desktopPlacement: "right",
+    featured: true,
+    summary: "Central operational management, visa logistics, and deployment headquarters in Dubai.",
   },
   {
     id: "saudi",
     name: "Saudi Arabia",
     role: "GCC",
-    x: 49.5,
-    y: 44.5,
+    x: 58.9,
+    y: 50.4,
     desktopPlacement: "left",
-    summary: "Large-scale manpower mobilisation for infrastructure and civil developments.",
+    summary: "Large-scale manpower mobilisation for infrastructure, industrial plants, and civil developments.",
   },
   {
     id: "qatar",
     name: "Qatar",
     role: "GCC",
-    x: 54.0,
-    y: 38.0,
+    x: 61.0,
+    y: 48.8,
     desktopPlacement: "top",
-    summary: "Turnkey workforce deployment across hospitality and facility sectors.",
+    summary: "Turnkey workforce deployment across hospitality, facilities management, and engineering sectors.",
   },
   {
-    id: "uae",
-    name: "UAE Headquarters",
-    role: "HQ",
-    x: 58.5,
-    y: 43.5,
-    desktopPlacement: "right",
-    featured: true,
-    summary: "Central executive management, client delivery, and visa logistics in Dubai.",
+    id: "israel",
+    name: "Israel",
+    role: "Corridor",
+    x: 51.4,
+    y: 42.6,
+    desktopPlacement: "left",
+    summary: "Strategic regional deployment corridor for civil infrastructure, construction, and specialized technical trade teams.",
+  },
+  {
+    id: "yemen",
+    name: "Yemen",
+    role: "Corridor",
+    x: 56.9,
+    y: 60.3,
+    desktopPlacement: "bottom",
+    summary: "Regional corridor logistics, maritime trade route staffing, and regional infrastructure operations.",
   },
   {
     id: "india",
     name: "India Hub",
     role: "Sourcing",
-    x: 79.5,
-    y: 46.8,
+    x: 77.5,
+    y: 52.0,
     desktopPlacement: "bottom",
     featured: true,
     summary: "Primary multi-state trade testing and document screening centres.",
   },
-];
-
-const hubs = [
   {
-    icon: Landmark,
-    title: "India Hub",
-    role: "Primary Sourcing",
-    copy: "Screened labour, hospitality talent, and verified trade testing centres.",
-  },
-  {
-    icon: Building2,
-    title: "UAE Headquarters",
-    role: "Operational Command",
-    copy: "Mobilisation, visas, compliance, and client delivery from Dubai.",
-  },
-  {
-    icon: Globe,
-    title: "Europe & GCC",
-    role: "Strategic Corridors",
-    copy: "Active deployments across Europe, Saudi Arabia, Qatar, and the wider Gulf.",
+    id: "europe",
+    name: "Europe",
+    role: "Deployment",
+    x: 34.0,
+    y: 24.3,
+    desktopPlacement: "top",
+    summary: "Active deployment across industrial, infrastructure, and technical projects.",
   },
 ];
 
 export default function GlobalReach() {
   const [activeLocationId, setActiveLocationId] = useState<string>("uae");
-  const activeLocation = locations.find((l) => l.id === activeLocationId) || locations[3];
+  const activeLocation = locations.find((l) => l.id === activeLocationId) || locations[0];
 
   return (
     <section id="global-reach" className="relative overflow-hidden bg-black py-10 sm:py-14 lg:py-16">
@@ -106,7 +103,7 @@ export default function GlobalReach() {
             </span>
           </div>
           <h2 className="mb-3 font-serif text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Command of the corridor.
+            Global deployment corridors.
           </h2>
           <p className="text-sm font-normal text-white/70 sm:text-base">
             Talent sourced from India. Mobilised from the UAE. Deployed across the GCC and Europe.
@@ -114,17 +111,17 @@ export default function GlobalReach() {
         </div>
 
         {/* Widescreen Deliberate Map Container */}
-        <div className="relative mx-auto h-[260px] sm:h-[360px] lg:h-[420px] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/15 bg-[#070b12] shadow-[0_24px_60px_rgba(0,0,0,0.6)]">
+        <div className="relative mx-auto w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-2xl border border-white/15 bg-[#070b12] shadow-[0_24px_60px_rgba(0,0,0,0.6)]">
           <Image
             src="/images/global-map.jpg"
             alt="Global operations map spanning Europe, GCC, and India"
             fill
             sizes="(max-width: 1024px) 100vw, 1024px"
-            className="object-cover opacity-85"
+            className="object-cover opacity-90"
             priority={false}
           />
           {/* Subtle vignette overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#070b12] via-transparent to-[#070b12]/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070b12]/60 via-transparent to-[#070b12]/30 pointer-events-none" />
 
           {/* Desktop & Mobile Interactive Location Pins */}
           {locations.map((loc) => {
@@ -237,36 +234,6 @@ export default function GlobalReach() {
               {activeLocation.summary}
             </motion.div>
           </AnimatePresence>
-        </div>
-
-        {/* Premium Dark Glass Hub Cards */}
-        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
-          {hubs.map((hub, index) => {
-            const Icon = hub.icon;
-            return (
-              <motion.div
-                key={hub.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.08 * index, duration: 0.5 }}
-                className="glass-card-dark rounded-2xl p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white">
-                    <Icon className="h-5 w-5 text-blue-300" />
-                  </div>
-                  <span className="text-[10px] font-semibold tracking-wider text-white/40 uppercase">
-                    {hub.role}
-                  </span>
-                </div>
-                <h3 className="mb-2 font-serif text-xl font-semibold text-white">{hub.title}</h3>
-                <p className="text-xs font-normal leading-relaxed text-white/70 sm:text-sm">
-                  {hub.copy}
-                </p>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>

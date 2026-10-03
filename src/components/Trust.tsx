@@ -2,32 +2,38 @@
 
 import { motion } from "framer-motion";
 import { BadgeCheck, Quote, ShieldCheck } from "lucide-react";
+import { site } from "@/lib/site";
 import AbstractBackground from "@/components/AbstractBackground";
 
-const clients = ["Gulf Infra", "Palm Hotels", "Northline Pack", "Qasir Group", "Helix Build"];
+const clients = [
+  "Gulf Horizon Infrastructure LLC",
+  "Crescent Hospitality Group",
+  "Emirates Packaging Industries LLC",
+];
 
 const testimonials = [
   {
+    sector: "Construction / Infrastructure",
     quote:
       "Construction crews arrived documented, inducted, and productive. Mobilisation was treated like a programme, not a recruitment job.",
     author: "Projects Director",
-    company: "Infrastructure Contractor, UAE",
+    company: "Gulf Horizon Infrastructure LLC",
   },
   {
+    sector: "Hospitality",
     quote:
       "Housekeeping and F&B coverage stayed stable through peak season. The hotel never felt understaffed.",
     author: "General Manager",
-    company: "Hospitality Group, GCC",
+    company: "Crescent Hospitality Group",
   },
   {
+    sector: "Manufacturing / Packaging",
     quote:
       "Packing-line operators and warehouse crews were role-fit and reliable on shift. Procurement and plant both signed off.",
     author: "Plant Operations Manager",
-    company: "Manufacturing & Packaging Client",
+    company: "Emirates Packaging Industries LLC",
   },
 ];
-
-const certifications = ["ISO 9001 Quality", "ISO 45001 Safety", "Licensed Recruitment"];
 
 export default function Trust() {
   return (
@@ -74,7 +80,12 @@ export default function Trust() {
             >
               <div>
                 <div className="mb-5 flex items-center justify-between">
-                  <Quote className="h-6 w-6 text-blue-600/30" />
+                  <div className="flex items-center gap-2">
+                    <Quote className="h-4 w-4 text-blue/40" />
+                    <span className="text-[11px] font-semibold tracking-wider text-blue uppercase">
+                      {item.sector}
+                    </span>
+                  </div>
                   <span className="inline-flex items-center gap-1 rounded-md border border-emerald-600/20 bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
                     <BadgeCheck className="h-3 w-3 text-emerald-600" />
                     <span>Verified Client</span>
@@ -93,14 +104,18 @@ export default function Trust() {
           ))}
         </div>
 
-        {/* Certifications Strip */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-line pt-8">
-          {certifications.map((cert) => (
-            <div key={cert} className="flex items-center gap-2 text-xs font-semibold tracking-wide text-slate-800 uppercase sm:text-sm">
-              <ShieldCheck className="h-4 w-4 text-blue-600" />
-              <span>{cert}</span>
+        {/* Verified Credentials Strip */}
+        <div className="mt-12 border-t border-line pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-blue-900/15 bg-white/90 px-5 py-2.5 text-xs font-semibold tracking-wide text-slate-800 uppercase shadow-sm backdrop-blur-sm sm:text-sm">
+              <ShieldCheck className="h-4 w-4 text-blue-600 shrink-0" />
+              <span>UAE Trade/License No: {site.tradeLicense}</span>
             </div>
-          ))}
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/80 px-5 py-2.5 text-xs font-semibold tracking-wide text-slate-700 uppercase shadow-sm backdrop-blur-sm sm:text-sm">
+              <BadgeCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+              <span>Licensed Entity · {site.legalName}</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

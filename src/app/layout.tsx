@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shahjahane.com"),
+  metadataBase: new URL(site.url),
   title: {
     default: `${site.name} | Enterprise Manpower`,
     template: `%s | ${site.shortName}`,
@@ -28,11 +28,18 @@ export const metadata: Metadata = {
     "manpower supply UAE",
     "GCC workforce",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/images/logo.png", type: "image/png" },
+    ],
+    apple: [{ url: "/images/logo.png" }],
+  },
   openGraph: {
     title: site.name,
     description: site.description,
     type: "website",
-    images: [{ url: "/images/hero-enterprise.jpg" }],
+    images: [{ url: "/images/logo.png" }],
   },
 };
 

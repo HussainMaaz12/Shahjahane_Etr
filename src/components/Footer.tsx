@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
 import {
   FacebookIcon,
@@ -8,9 +9,9 @@ import {
 } from "@/components/SocialIcons";
 
 const socials = [
+  { icon: YouTubeIcon, href: site.social.youtube, label: "YouTube" },
   { icon: InstagramIcon, href: site.social.instagram, label: "Instagram" },
   { icon: FacebookIcon, href: site.social.facebook, label: "Facebook" },
-  { icon: YouTubeIcon, href: site.social.youtube, label: "YouTube" },
 ];
 
 export default function Footer() {
@@ -19,15 +20,21 @@ export default function Footer() {
       <div className="container-premium pt-16 pb-8 sm:pt-20">
         <div className="mb-14 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="mb-5 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-bold text-black">
-                ST
+            <Link href="/" className="mb-5 flex items-center gap-3 group">
+              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white p-1 sm:h-11 sm:w-11 transition-transform duration-300 group-hover:scale-105 shadow-sm">
+                <Image
+                  src="/images/logo.png"
+                  alt="Shahjahane Technical Services"
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-contain"
+                />
               </div>
-              <div>
-                <div className="text-sm font-semibold tracking-[0.16em] text-white uppercase">
+              <div className="leading-tight">
+                <div className="text-sm font-bold tracking-[0.14em] text-[#38bdf8] uppercase sm:text-base transition-colors group-hover:text-white">
                   Shahjahane
                 </div>
-                <div className="text-[10px] tracking-[0.2em] text-steel uppercase">
+                <div className="text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase sm:text-[11px]">
                   Technical Services
                 </div>
               </div>
@@ -35,7 +42,7 @@ export default function Footer() {
             <p className="mb-6 max-w-xs text-sm leading-relaxed font-light">
               {site.tagline}
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2.5">
               {socials.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -44,8 +51,9 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-white transition-colors hover:bg-white hover:text-black"
+                    aria-label={`Official Shahjahane on ${social.label}`}
+                    title={social.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-white/80 transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white hover:text-black cursor-pointer shadow-sm"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -76,7 +84,7 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-5 text-xs font-semibold tracking-[0.22em] text-white uppercase">
-              UAE office
+              Dubai Office
             </h4>
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3">
@@ -100,23 +108,30 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-5 text-xs font-semibold tracking-[0.22em] text-white uppercase">
-              India office
+              India Contact
             </h4>
             <ul className="space-y-4 text-sm">
-              <li className="flex gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-                <span>{site.addressIndia}</span>
-              </li>
               <li className="flex gap-3">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-white" />
                 <a href={site.phoneIndiaHref} className="hover:text-white">
                   {site.phoneIndia}
                 </a>
               </li>
-              <li className="text-sm">
-                Careers:{" "}
-                <a href={`mailto:${site.careersEmail}`} className="hover:text-white">
-                  {site.careersEmail}
+              <li className="flex gap-3">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white" />
+                <a href={`mailto:${site.email}`} className="hover:text-white">
+                  {site.email}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <Globe className="mt-0.5 h-4 w-4 shrink-0 text-white" />
+                <a
+                  href={site.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
+                  {site.website}
                 </a>
               </li>
             </ul>
@@ -134,7 +149,12 @@ export default function Footer() {
             <Link href="/terms" className="hover:text-white">
               Terms of Service
             </Link>
-            <a href={site.whatsappHref} className="hover:text-white">
+            <a
+              href={site.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white"
+            >
               WhatsApp
             </a>
           </div>
