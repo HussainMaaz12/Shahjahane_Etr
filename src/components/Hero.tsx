@@ -39,8 +39,8 @@ export default function Hero() {
       <AbstractBackground variant="hero" />
 
       <div className="container-premium relative z-10 grid items-center gap-10 py-8 sm:py-10 lg:grid-cols-12 lg:gap-12 lg:py-12">
-                <div className="lg:col-span-6">
-                    <motion.div
+        <div className="lg:col-span-6">
+          <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -55,7 +55,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-                    <motion.h1
+          <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -75,11 +75,11 @@ export default function Hero() {
             className="mb-6 max-w-xl text-base font-normal leading-relaxed text-navy-mid sm:text-lg"
           >
             Construction labour, hotel management manpower, and manufacturing
-            &amp; packaging teams — screened and deployed for enterprise
+            &amp; packaging teams , screened and deployed for enterprise
             operations.
           </motion.p>
 
-                    <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -95,7 +95,7 @@ export default function Hero() {
             </MotionLink>
           </motion.div>
 
-                    <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -120,13 +120,13 @@ export default function Hero() {
           </motion.div>
         </div>
 
-                <motion.div
+        <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:col-span-6"
         >
-                    <div className="group relative min-h-[360px] overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-2 shadow-[0_24px_60px_rgba(10,10,10,0.1)] backdrop-blur-xl sm:min-h-[460px] lg:min-h-[560px]">
+          <div className="group relative min-h-[360px] overflow-hidden rounded-2xl border border-white/60 bg-white/40 p-2 shadow-[0_24px_60px_rgba(10,10,10,0.1)] backdrop-blur-xl sm:min-h-[460px] lg:min-h-[560px]">
             <div className="relative h-full w-full min-h-[340px] overflow-hidden rounded-xl sm:min-h-[440px] lg:min-h-[540px]">
               <Image
                 src="/images/hero-enterprise.jpg"
@@ -139,7 +139,7 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
             </div>
 
-                        <div className="pointer-events-none absolute top-6 right-6 hidden sm:block">
+            <div className="pointer-events-none absolute top-6 right-6 hidden sm:block">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -176,11 +176,11 @@ export default function Hero() {
         </motion.div>
       </div>
 
-            <div className="relative z-10 border-t border-line bg-white/80 backdrop-blur-md">
+      <div className="relative z-10 border-t border-line bg-white/80 backdrop-blur-md">
         <div className="container-premium grid grid-cols-2 gap-6 py-5 sm:grid-cols-4 sm:py-7">
           {[
-            ["18+", "Years operating"],
-            ["45K+", "Professionals deployed"],
+            ["8+", "Years operating"],
+            ["5K+", "Professionals deployed"],
             ["120+", "Enterprise clients"],
             ["5", "Operating regions"],
           ].map(([value, label], idx) => (
